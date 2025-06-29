@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.multiplepages">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Multiplepages"
+        tools:targetApi="31">
+
+        <!-- ✅ Splash screen: Launcher activity -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- ✅ Login page shown after splash -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+
+        <!-- ✅ Signup screen (opened from login) -->
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true" />
+
+        <!-- ✅ User screen for regular users -->
+        <activity
+            android:name=".UserActivity"
+            android:exported="true" />
+
+        <!-- ✅ Admin screen if password = admin@123 -->
+        <activity
+            android:name=".AdminActivity"
+            android:exported="true" />
+
+        <!-- ✅ Show Order page (opened by UserActivity) -->
+        <activity
+            android:name=".ShoworderActivity"
+            android:exported="true"
+            android:label="@string/title_activity_showorders"
+            android:theme="@style/Theme.AppCompat" />
+
+    </application>
+</manifest>

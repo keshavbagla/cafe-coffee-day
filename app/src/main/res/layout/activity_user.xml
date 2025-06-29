@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Welcome To Cafe Coffee DAY"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:layout_margin="15dp"
+        android:inputType="text"
+        android:hint="Enter order 1" />
+
+    <EditText
+        android:id="@+id/et2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_margin="15dp"
+        android:text="Enter order 2" />
+
+    <EditText
+        android:id="@+id/et3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_margin="15dp"
+        android:hint="Enter order 3" />
+
+    <EditText
+        android:id="@+id/et4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_margin="15dp"
+        android:text="Enter order 4" />
+
+    <Button
+        android:id="@+id/btnOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#6633FF"
+        android:text="Order Now"
+        android:textColor="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.695"
+            app:srcCompat="@drawable/pexels_jayoke_851555" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
