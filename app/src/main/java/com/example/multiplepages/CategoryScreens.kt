@@ -22,6 +22,8 @@ import kotlinx.coroutines.tasks.await
 import com.example.multiplepages.model.CafeMenuItem
 import com.example.multiplepages.manager.CartManager
 import com.example.multiplepages.screens.BottomCartIndicator
+import com.example.multiplepages.screens.getHotCoffeeItems
+import com.example.multiplepages.screens.getColdCoffeeItems
 
 // 1. DRINKS PAGE (Main Category)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -588,6 +590,8 @@ fun getDefaultImageForItem(itemName: String): String {
 }
 
 fun getSampleMenuItems(categoryId: String, subcategory: String?): List<CafeMenuItem> = when (categoryId) {
+    "hot_coffees" -> getHotCoffeeItems()
+    "cold_coffees" -> getColdCoffeeItems()
     "drinks" -> when (subcategory) {
         "Espresso" -> listOf(
             CafeMenuItem("Date Cortado", "383.25", "168ml", "168", "drinks", "Double shot blonde espresso, paired with date flavoured sauce and steamed milk", "", "Espresso, date syrup, milk", true),

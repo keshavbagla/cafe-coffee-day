@@ -16,6 +16,14 @@ fun AppNavigation(navController: NavHostController) {
             DrinksScreen(navController)
         }
         
+        composable("hot_coffees") {
+            HotCoffeeScreen(navController)
+        }
+        
+        composable("cold_coffees") {
+            ColdCoffeeScreen(navController)
+        }
+        
         composable("food") {
             FoodScreen(navController)
         }
