@@ -1,5 +1,6 @@
 package com.example.multiplepages
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -16,6 +17,14 @@ class UserActivity : AppCompatActivity() {
         val order3 = findViewById<EditText>(R.id.et3)
         val order4 = findViewById<EditText>(R.id.et4)
         val button = findViewById<Button>(R.id.btnOrder)
+
+        // Add a button to launch the new menu interface
+        val menuButton = Button(this).apply {
+            text = "Browse New Menu"
+            setOnClickListener {
+                startActivity(Intent(this@UserActivity, MainActivity::class.java))
+            }
+        }
 
         button.setOnClickListener {
             val orders = listOf(

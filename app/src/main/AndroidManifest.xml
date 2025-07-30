@@ -41,6 +41,12 @@
             android:name=".UserActivity"
             android:exported="true" />
 
+        <!-- ✅ Main Compose screen with menu -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat" />
+
         <!-- ✅ Admin screen if password = admin@123 -->
         <activity
             android:name=".AdminActivity"

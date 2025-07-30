@@ -2,8 +2,12 @@ package com.example.multiplepages.model
 
 data class CafeMenuItem(
     val name: String = "",
-    val price: Int = 0,
-    val size_ml: Int = 0,
+    val price: String = "",
+    val size: String = "",
+    val calories: String = "",
+    val category: String = "",
+    val description: String = "",
     val imageUrl: String = "",
-    val calories: Int = 0
+    val ingredients: String = "",
+    val availability: Boolean = true
 )
