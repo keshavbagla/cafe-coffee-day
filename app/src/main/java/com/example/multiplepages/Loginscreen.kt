@@ -6,9 +6,6 @@ package com.example.multiplepages
  import androidx.compose.foundation.layout.Row
  import androidx.compose.foundation.layout.Spacer
  import androidx.compose.foundation.text.KeyboardOptions
- import androidx.compose.material.Checkbox
- import androidx.compose.material.OutlinedTextField
- import androidx.compose.material.Text
  import androidx.compose.material3.Button
  import androidx.compose.material3.Icon
  import androidx.compose.material3.IconButton
@@ -27,7 +24,10 @@ package com.example.multiplepages
  import androidx.compose.ui.unit.dp
  import androidx.compose.ui.unit.sp
  import androidx.compose.foundation.clickable
-import androidx.compose.ui.Modifier
+ import androidx.compose.material3.Checkbox
+ import androidx.compose.material3.OutlinedTextField
+ import androidx.compose.material3.Text
+ import androidx.compose.ui.Modifier
 
 @Composable
 fun LoginScreen(
