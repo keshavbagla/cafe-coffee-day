@@ -27,7 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.multiplepages.BottomNavigationBar
+
+import com.example.multiplepages.SimpleVoiceBottomNavigationBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +37,7 @@ fun HomeScreen(navController: NavController) {
 
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(navController = navController)
+            SimpleVoiceBottomNavigationBar(navController = navController)
         }
     ) { paddingValues ->
         LazyColumn(

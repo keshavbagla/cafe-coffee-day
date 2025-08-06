@@ -74,6 +74,11 @@ class HomeActivity : ComponentActivity() {
                         composable("cart") {
                             CartScreen(navController)
                         }
+                        composable("HotCoffeesScreen") { HotCoffeesScreen(navController) }
+                        composable("ColdCoffeesScreen") { ColdCoffeesScreen(navController) }
+                        composable("SandwichesScreen") { SandwichesScreen(navController) }
+                        composable("BurgersScreen") { BurgersScreen(navController) }
+                        composable("DessertsScreen") { DessertsScreen(navController) }
 
                         composable("confirmOrder") {
                             val selectedItems = remember { mutableListOf<CafeMenuItem>() }

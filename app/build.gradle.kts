@@ -1,6 +1,3 @@
-
-
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -19,7 +16,9 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -50,7 +49,11 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
-    packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -66,33 +69,37 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation(platform("androidx.compose:compose-bom:2024.04.01"))
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended:${libs.versions.compose.get()}")
 
-    // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-storage")
+    // Compose Material Icons Extended
+    implementation(libs.androidx.compose.material.icons.extended)
 
-    // Authentication
+    // Security Crypto
+    implementation(libs.androidx.security.crypto)
 
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    // Firebase BOM and services
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
 
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.5")
 
-    // Image loading (if you need Coil)
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation(libs.play.services.auth)
+
+
+    implementation(libs.androidx.navigation.compose)
+
+
+    implementation(libs.coil.compose)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

@@ -72,7 +72,7 @@ fun UserScreen(
             )
         },
         bottomBar = {
-            BottomNavigationBar(navController = navController)
+            SimpleVoiceBottomNavigationBar(navController = navController)
         }
     ) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize()) {

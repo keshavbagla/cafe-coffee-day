@@ -4,6 +4,15 @@
     package="com.example.multiplepages">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- MOVE queries OUTSIDE of application tag -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
 
     <application
         android:name=".MyApplication"
@@ -16,8 +25,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiplePages"
         tools:targetApi="31">
-
-        <!-- Removed Facebook SDK metadata to fix string resolution errors -->
 
         <!-- ✅ Splash screen: Launcher activity -->
         <activity
@@ -39,7 +46,6 @@
         <activity
             android:name=".SignupActivity"
             android:exported="true" />
-
 
         <!-- ✅ User screen for regular users -->
         <activity
