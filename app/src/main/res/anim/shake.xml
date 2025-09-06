@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@integer/shake_animation_duration"
+    android:fromXDelta="-2%p"
+    android:toXDelta="2%p"
+    android:repeatCount="@integer/shake_repeat_count"
+    android:repeatMode="reverse"
+    android:interpolator="@android:anim/bounce_interpolator" />

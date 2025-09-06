@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserActivity">
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Welcome To Cafe Coffee DAY"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="16dp" />
+
+            <!-- Order 1 -->
+            <AutoCompleteTextView
+                android:id="@+id/et1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Order 1: Select Category"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginBottom="12dp"
+                tools:targetApi="3" />
+
+            <!-- Order 2 -->
+            <AutoCompleteTextView
+                android:id="@+id/et2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Order 2: Select Category"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginBottom="12dp"
+                tools:targetApi="3" />
+
+            <!-- Order 3 -->
+            <AutoCompleteTextView
+                android:id="@+id/et3"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Order 3: Select Category"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginBottom="12dp"
+                tools:targetApi="3" />
+
+            <!-- Order 4 -->
+            <AutoCompleteTextView
+                android:id="@+id/et4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Order 4: Select Category"
+                android:inputType="none"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginBottom="16dp"
+                tools:targetApi="3" />
+
+            <!-- Order Button -->
+            <Button
+                android:id="@+id/btnOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6633FF"
+                android:text="Order Now"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Cafe Image -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_coffee_cup"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Fixed Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_nav"
+        app:itemIconTint="@null"
+        app:itemTextColor="@color/black"
+        android:background="@android:color/white" />
+</RelativeLayout>

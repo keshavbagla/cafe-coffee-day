@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="200dp"
+                android:layout_height="161dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/cafe_logo"
+                android:contentDescription="Cafe Logo" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/yeon_sung"
+                android:gravity="center"
+                android:text="Cafe Coffee Day"
+                android:textColor="#0f456b"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <!-- Sign Up Header -->
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/yeon_sung"
+                android:text="Sign Up Here"
+                android:textColor="#DC8BCA"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Name Input -->
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/edittext"
+                android:drawableLeft="@drawable/user_02__1_"
+                android:drawablePadding="15dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/yeon_sung"
+                android:hint="Name"
+                android:inputType="text"
+                android:padding="15dp"
+                android:maxLines="1" />
+
+            <!-- Email Input -->
+            <EditText
+                android:id="@+id/editTextTextEmailAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/edittext"
+                android:drawableLeft="@drawable/mail_02"
+                android:drawablePadding="15dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/yeon_sung"
+                android:hint="Email or Phone Number"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:maxLines="1" />
+
+            <!-- Password Input -->
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/edittext"
+                android:drawableLeft="@drawable/lock_01"
+                android:drawablePadding="15dp"
+                android:elevation="5dp"
+                android:fontFamily="@font/yeon_sung"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:maxLines="1" />
+
+            <!-- Or Text -->
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="or"
+                android:textSize="14sp"
+                android:textColor="#666666" />
+
+            <!-- Sign Up With Text -->
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/yeon_sung"
+                android:text="Sign Up With"
+                android:textSize="16sp"
+                android:textColor="#333333" />
+
+            <!-- Social Media Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button5"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/whitebutton"
+                    android:drawableLeft="@drawable/facebook_3_1"
+                    android:drawablePadding="8dp"
+                    android:text="Facebook"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button6"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/whitebutton"
+                    android:drawableLeft="@drawable/google_icon_2"
+                    android:drawablePadding="8dp"
+                    android:text="Google"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- Sign Up Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signupbutton"
+                android:layout_width="200dp"
+                android:layout_height="57dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/whitebutton"
+                android:backgroundTint="#F19EE3"
+                android:text="Sign Up"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:elevation="3dp" />
+
+            <!-- Already Have Account Text -->
+            <TextView
+                android:id="@+id/Alreadyhavebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Already Have An Account?"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

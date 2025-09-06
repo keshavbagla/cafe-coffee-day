@@ -1,0 +1,10 @@
+<resources>
+    <integer name="shake_animation_duration">1000</integer>
+    <integer name="splash_animation_duration">3000</integer>
+    <integer name="text_fade_duration">1000</integer>
+    <integer name="text_fade_delay">500</integer>
+
+
+    <integer name="shake_repeat_count">5</integer>
+    <integer name="bounce_repeat_count">3</integer>
+</resources>
