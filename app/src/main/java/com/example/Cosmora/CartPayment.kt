@@ -1,6 +1,12 @@
 package com.example.Cosmora
 
-import android.graphics.Color.rgb
+import android.app.Activity
+import android.util.Log
+import com.example.Cosmora.payment.UnifiedPaymentManager
+import com.example.Cosmora.payment.PaymentGatewayConfig
+import com.example.Cosmora.payment.PaymentResult  // Import from payment package
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,6 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+
+// Remove the duplicate PaymentResult class - using the one from payment package
 
 // Sample saved cards
 fun sampleSavedCards() = listOf(
@@ -191,7 +199,7 @@ fun PaymentTypeScreen(
                 }
             }
 
-            // Order Summary Card (styled as per screenshot 3)
+            // Order Summary Card
             item {
                 PaymentOrderSummaryCard(
                     itemTotal = itemTotal,
@@ -206,7 +214,6 @@ fun PaymentTypeScreen(
             itemCount = totalItems,
             selectedPaymentId = selectedPaymentId,
             onPayNow = {
-                val paymentMethodName = getPaymentMethodName(selectedPaymentId)
                 navController.navigate("payment_success/$selectedPaymentId/$total")
             }
         )
@@ -327,7 +334,7 @@ fun PaymentOrderSummaryCard(
                     color = Color.Gray
                 )
                 Text(
-                    text = "${String.format("%.2f", itemTotal)}",
+                    text = "₹${String.format("%.2f", itemTotal)}",
                     fontSize = 14.sp,
                     color = amountColor,
                     fontWeight = FontWeight.SemiBold
@@ -344,13 +351,13 @@ fun PaymentOrderSummaryCard(
                     color = Color.Gray
                 )
                 Text(
-                    text = "${String.format("%.2f", deliveryFee)}",
+                    text = "₹${String.format("%.2f", deliveryFee)}",
                     fontSize = 14.sp,
                     color = amountColor,
                     fontWeight = FontWeight.SemiBold
                 )
             }
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.padding(vertical = 12.dp),
                 color = Color.Gray.copy(alpha = 0.3f)
             )
@@ -366,7 +373,7 @@ fun PaymentOrderSummaryCard(
                     color = Color.Black
                 )
                 Text(
-                    text = "$${String.format("%.2f", total)}",
+                    text = "₹${String.format("%.2f", total)}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = amountColor
@@ -383,6 +390,101 @@ fun PaymentBottomButton(
     selectedPaymentId: String,
     onPayNow: () -> Unit
 ) {
+    val context = LocalContext.current
+    var paymentResult: PaymentResult? by remember { mutableStateOf(null) }
+
+    // Initialize unified payment manager
+    val paymentManager = remember {
+        try {
+            UnifiedPaymentManager(
+                activity = context as Activity,
+                onPaymentResult = { result ->
+                    paymentResult = result
+                }
+            ).apply {
+                // Setup all payment gateways
+                PaymentGatewayConfig.setupPaymentGateways(this)
+            }
+        } catch (e: Exception) {
+            Log.e("Payment", "Failed to initialize payment manager", e)
+            null
+        }
+    }
+
+    // Handle payment
+    val handlePayment = {
+        if (paymentManager != null) {
+            val gateway = PaymentGatewayConfig.getGatewayById(selectedPaymentId)
+
+            if (gateway != null) {
+                paymentResult = PaymentResult.Loading
+                try {
+                    paymentManager.initiatePayment(
+                        gateway = gateway,
+                        amount = amount,
+                        orderId = "ORDER_${System.currentTimeMillis()}", // Generate order ID
+                        customerId = "CUSTOMER_${System.currentTimeMillis()}", // Use actual customer ID
+                        customerEmail = "customer@example.com", // Optional: actual email
+                        customerMobile = "9876543210" // Optional: actual mobile
+                    )
+                } catch (e: Exception) {
+                    Log.e("Payment", "Failed to initiate payment", e)
+                    paymentResult = PaymentResult.Failed("Failed to initiate payment: ${e.message}")
+                }
+            } else {
+                // Handle unknown payment method - proceed with navigation for cash payments
+                when (selectedPaymentId) {
+                    "cash_store", "cash_delivery", "cosmora_card" -> {
+                        onPayNow() // Navigate to success screen
+                    }
+                    else -> {
+                        Log.e("Payment", "Unknown payment method: $selectedPaymentId")
+                        paymentResult = PaymentResult.Failed("Unsupported payment method")
+                    }
+                }
+            }
+        } else {
+            // Fallback for when payment manager is not available
+            when (selectedPaymentId) {
+                "cash_store", "cash_delivery", "cosmora_card" -> {
+                    onPayNow() // Navigate to success screen for non-gateway payments
+                }
+                else -> {
+                    Log.e("Payment", "Payment manager not available")
+                    paymentResult = PaymentResult.Failed("Payment system unavailable")
+                }
+            }
+        }
+    }
+
+    // Handle payment result
+    LaunchedEffect(paymentResult) {
+        when (val result = paymentResult) {
+            is PaymentResult.Success -> {
+                // Payment successful - navigate to success screen
+                onPayNow()
+                paymentResult = null // Reset state
+            }
+            is PaymentResult.Failed -> {
+                // Show error message to user
+                Log.e("Payment", "Payment failed: ${result.error}")
+                // TODO: Show error dialog or snackbar
+            }
+            is PaymentResult.Cancelled -> {
+                // Payment cancelled by user
+                Log.d("Payment", "Payment cancelled by user")
+                paymentResult = null // Reset state
+            }
+            is PaymentResult.Loading -> {
+                // Loading state is handled in UI
+                Log.d("Payment", "Processing payment...")
+            }
+            null -> {
+                // Initial state
+            }
+        }
+    }
+
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color(0xFF00704A),
@@ -394,24 +496,33 @@ fun PaymentBottomButton(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "$${String.format("%.2f", amount)} ($itemCount Items)",
+                text = "₹${String.format("%.2f", amount)} ($itemCount Items)",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White
             )
             Button(
-                onClick = onPayNow,
+                onClick = handlePayment,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF00704A)
                 ),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(8.dp),
+                enabled = paymentResult !is PaymentResult.Loading
             ) {
-                Text(
-                    text = "Pay Now",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color(0xFFFFFFFF)
-                )
+                if (paymentResult is PaymentResult.Loading) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
+                    )
+                } else {
+                    Text(
+                        text = "Pay Now",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFFFFFFFF)
+                    )
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.gms.google-services")
+    id ("kotlin-parcelize")
     id("com.google.firebase.crashlytics")
 }
 
@@ -71,6 +72,8 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
     implementation("androidx.security:security-crypto:1.0.0")
     implementation("androidx.compose.runtime:runtime-saved-instance-state:1.0.0-alpha07")
+    implementation("androidx.compose.runtime:runtime:1.5.4")
+    implementation("androidx.activity:activity-compose:1.8.0")
 
     // Jetpack Compose
     implementation("androidx.activity:activity-compose:1.9.2")
@@ -98,6 +101,11 @@ dependencies {
 
     //PAYMENT
     implementation("com.paytm.appinvokesdk:appinvokesdk:1.6.6")
+    implementation("com.paytm:pgplussdk:1.4.4")
+    implementation("com.razorpay:checkout:1.6.33")
+    implementation("com.paypal.sdk:paypal-android-sdk:2.16.0")
+    implementation("phonepe.intentsdk.android:IntentSDK:2.4.1")
+    implementation("com.stripe:stripe-android:20.16.0")
 
     //Reterofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
